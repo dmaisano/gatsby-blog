@@ -1,11 +1,16 @@
-require(`dotenv`).config()
+require(`dotenv`).config();
 
-const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
-const googleAnalyticsTrackingId = process.env.GOOGLE_ANALYTICS_ID
+const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE;
+const googleAnalyticsTrackingId = process.env.GOOGLE_ANALYTICS_ID;
 
 module.exports = {
   siteMetadata: {
-    siteTitleAlt: `Minimal Blog - Gatsby Theme`,
+    siteTitle: `dmaisano`,
+    siteTitleAlt: `dmaisano`,
+    blogPath: `/posts`,
+    siteUrl: `https://dmaisano.netlify.app`,
+    siteLanguage: `en`,
+    siteImage: `/banner.jpg`,
   },
   flags: {
     FAST_DEV: true,
@@ -15,24 +20,28 @@ module.exports = {
       resolve: `@lekoarts/gatsby-theme-minimal-blog`,
       // See the theme's README for all available options
       options: {
+        showLineNumbers: false,
+        blogPath: `/posts`,
+        feedTitle: `dmaisano blog`,
+        formatString: `MMM D, YYYY`,
         navigation: [
           {
-            title: `Blog`,
-            slug: `/blog`,
+            title: `Posts`,
+            slug: `/posts`,
           },
           {
             title: `About`,
             slug: `/about`,
           },
+          {
+            title: `Projects`,
+            slug: `/projects`,
+          },
         ],
         externalLinks: [
           {
-            name: `Twitter`,
-            url: `https://twitter.com/lekoarts_de`,
-          },
-          {
-            name: `Homepage`,
-            url: `https://www.lekoarts.de?utm_source=minimal-blog&utm_medium=Starter`,
+            name: `Github`,
+            url: `https://github.com/dmaisano`,
           },
         ],
       },
@@ -62,12 +71,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `minimal-blog - @lekoarts/gatsby-theme-minimal-blog`,
-        short_name: `minimal-blog`,
-        description: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and code highlighting.`,
+        name: `dmaisano`,
+        short_name: `dmaisano blog`,
+        description: `personal blog`,
         start_url: `/`,
         background_color: `#fff`,
-        theme_color: `#6B46C1`,
+        theme_color: `#3865EF`,
         display: `standalone`,
         icons: [
           {
@@ -82,6 +91,27 @@ module.exports = {
           },
         ],
       },
+      // options: {
+      //   name: `minimal-blog - @lekoarts/gatsby-theme-minimal-blog`,
+      //   short_name: `minimal-blog`,
+      //   description: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and code highlighting.`,
+      //   start_url: `/`,
+      //   background_color: `#fff`,
+      //   theme_color: `#6B46C1`,
+      //   display: `standalone`,
+      //   icons: [
+      //     {
+      //       src: `/android-chrome-192x192.png`,
+      //       sizes: `192x192`,
+      //       type: `image/png`,
+      //     },
+      //     {
+      //       src: `/android-chrome-512x512.png`,
+      //       sizes: `512x512`,
+      //       type: `image/png`,
+      //     },
+      //   ],
+      // },
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-gatsby-cloud`,
@@ -105,8 +135,8 @@ module.exports = {
           {
             serialize: ({ query: { site, allPost } }) =>
               allPost.nodes.map((post) => {
-                const url = site.siteMetadata.siteUrl + post.slug
-                const content = `<p>${post.excerpt}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${url}">Keep reading</a>.</strong></div><br /> <br />`
+                const url = site.siteMetadata.siteUrl + post.slug;
+                const content = `<p>${post.excerpt}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${url}">Keep reading</a>.</strong></div><br /> <br />`;
 
                 return {
                   title: post.title,
@@ -115,7 +145,7 @@ module.exports = {
                   url,
                   guid: url,
                   custom_elements: [{ "content:encoded": content }],
-                }
+                };
               }),
             query: `
               {
@@ -144,4 +174,4 @@ module.exports = {
       },
     },
   ].filter(Boolean),
-}
+};

@@ -1,0 +1,8 @@
+.tag > a {
+  text-decoration: none !important;
+}
+
+.tag .react {
+  background: #282c34;
+  color: #61dafb;
+}

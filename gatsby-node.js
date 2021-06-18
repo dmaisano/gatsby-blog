@@ -9,7 +9,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type PostFields {
-      tag: PostTag!
+      tag: PostTag
     }
 
     type PostTag {

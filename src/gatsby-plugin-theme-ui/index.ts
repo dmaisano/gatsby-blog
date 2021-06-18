@@ -7,11 +7,20 @@ const customTheme: Theme = {
     text: `#2E3440`,
     primary: `#3865EF`,
     heading: `#424242`,
+    border: `#303030`,
     modes: {
-      dark: {
-        background: `#1A202C`,
-        text: pluginTheme.colors.modes.dark.text,
-        primary: `#7F9CF5`,
+      // dark: {
+      //   background: `#1A202C`,
+      //   text: pluginTheme.colors.modes.dark.text,
+      //   primary: `#7F9CF5`,
+      // },
+    },
+  },
+  styles: {
+    a: {
+      textDecoration: `none`,
+      ":hover": {
+        textDecoration: `none`,
       },
     },
   },

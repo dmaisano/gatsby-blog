@@ -1,5 +1,10 @@
 import { Node } from "gatsby";
 
+type TagType = {
+  name: `React`;
+  slug: string;
+};
+
 interface MdxPost extends Node {
   slug: string;
   title: string;
@@ -7,11 +12,9 @@ interface MdxPost extends Node {
   excerpt: string;
   description: string;
   timeToRead?: number;
+  tags?: TagType[];
   fields: {
-    tag: {
-      name: string;
-      value: string;
-    };
+    tag?: TagType;
     [key: string]: any;
   };
   [key: string]: any;

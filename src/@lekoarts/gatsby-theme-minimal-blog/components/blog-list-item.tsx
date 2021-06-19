@@ -18,6 +18,7 @@ const BlogListItem: React.FC<BlogListItemProps> = ({
     <Box
       id="blog-list-item"
       sx={{
+        width: `100%`,
         position: `relative`,
         display: [`block`, `flex`],
         flexDirection: `row`,
@@ -33,7 +34,12 @@ const BlogListItem: React.FC<BlogListItemProps> = ({
         },
       }}
     >
-      <Link to={post.slug}>
+      <Link
+        sx={{
+          width: `100%`,
+        }}
+        to={post.slug}
+      >
         <Heading
           as="h3"
           sx={{
@@ -50,11 +56,14 @@ const BlogListItem: React.FC<BlogListItemProps> = ({
       </Link>
       <Box
         sx={{
+          width: [`auto`, `200px`],
           display: `flex`,
           flexDirection: [`row`, `column-reverse`],
           alignItems: [`center`, `inherit`],
           paddingRight: [0, `0.75rem`],
           paddingBottom: [`1.25rem`],
+          marginLeft: `auto`,
+          textAlign: [`inherit`, `right`],
           "& #item-tag": {
             alignSelf: `flex-end`,
           },

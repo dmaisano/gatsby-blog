@@ -22,8 +22,6 @@ const Homepage: React.FC<PostsProps> = ({ posts }) => {
   const { basePath, blogPath } = useMinimalBlogConfig();
   const { siteTitle } = useSiteMetadata();
 
-  console.log(posts);
-
   return (
     <Layout>
       <h1 sx={visuallyHidden}>{siteTitle}</h1>

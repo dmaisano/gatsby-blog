@@ -1,3 +1,6 @@
 node_modules/
 .cache/
 public
+
+# dummy mdx file for testing
+content/**/sample/index.mdx

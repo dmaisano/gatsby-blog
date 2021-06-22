@@ -3,6 +3,7 @@ import { Box, Heading, jsx } from "theme-ui";
 import { MdxPost } from "../../../types/types";
 import { lighten } from "@theme-ui/color";
 import Link from "../../../components/link";
+import { ListStyles } from "../../../styles/list-item.styles";
 import ItemTag from "../../../components/item-tag";
 
 type BlogListItemProps = {
@@ -21,22 +22,21 @@ const BlogListItem: React.FC<BlogListItemProps> = ({
         width: `100%`,
         position: `relative`,
         display: [`block`, `flex`],
+        // alignItems: [`inherit`, `baseline`],
         flexDirection: `row`,
         justifyContent: `space-between`,
-        paddingTop: [2, 3],
-        paddingBottom: [2, 3],
-        ":hover": {
-          background: lighten(`primary`, 0.33),
-        },
-        ":not(:last-child)": {
-          borderBottom: `1px dotted`,
-          borderColor: `border`,
-        },
+        py: [2, 3],
+        // paddingTop: [2, 3],
+        // paddingBottom: [2, 3],
+        ...ListStyles,
       }}
     >
       <Link
         sx={{
           width: `100%`,
+          ":hover h3": {
+            color: `primary`,
+          },
         }}
         to={post.slug}
       >
@@ -44,10 +44,11 @@ const BlogListItem: React.FC<BlogListItemProps> = ({
           as="h3"
           sx={{
             color: `heading`,
-            fontSize: [3, 4],
+            fontSize: [2, 3],
             fontWeight: `900`,
-            paddingTop: `0.75rem`,
-            paddingBottom: `0.75rem`,
+            py: `0.75rem`,
+            // paddingTop: `0.75rem`,
+            // paddingBottom: `0.75rem`,
             lineHeight: `1.2`,
           }}
         >
@@ -61,7 +62,7 @@ const BlogListItem: React.FC<BlogListItemProps> = ({
           flexDirection: [`row`, `column-reverse`],
           alignItems: [`center`, `inherit`],
           paddingRight: [0, `0.75rem`],
-          paddingBottom: [`1.25rem`],
+          // paddingBottom: [`1.25rem`],
           marginLeft: `auto`,
           textAlign: [`inherit`, `right`],
           "& #item-tag": {

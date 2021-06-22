@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import BlogListItem from "@lekoarts/gatsby-theme-minimal-blog/src/components/blog-list-item";
+import BlogListItem from "./blog-list-item";
 import { jsx } from "theme-ui";
 import { MdxPost } from "../../../types/types";
 

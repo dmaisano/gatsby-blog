@@ -6,7 +6,7 @@ import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replac
 import { Link } from "gatsby";
 import { jsx } from "theme-ui";
 import Projects from "../../../components/projects";
-import { MdxPost } from "../../../types/types";
+import { MdxPost, ProjectQueryResult } from "../../../types/types";
 import { visuallyHidden } from "../styles/utils";
 import Hero from "../texts/hero.mdx";
 import List from "./list";
@@ -15,12 +15,15 @@ import Title from "./title";
 
 type PostsProps = {
   posts: MdxPost[];
+  projects: ProjectQueryResult[];
   [key: string]: any;
 };
 
-const Homepage: React.FC<PostsProps> = ({ posts }) => {
+const Homepage: React.FC<PostsProps> = ({ posts, projects }) => {
   const { basePath, blogPath } = useMinimalBlogConfig();
   const { siteTitle } = useSiteMetadata();
+
+  // console.log(projects);
 
   return (
     <Layout>
@@ -47,7 +50,7 @@ const Homepage: React.FC<PostsProps> = ({ posts }) => {
         </Link>
       </Title>
       <List sx={{ variant: `section_bottom` }}>
-        <Projects limit={5} />
+        <Projects projects={projects} />
       </List>
     </Layout>
   );

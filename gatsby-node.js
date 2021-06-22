@@ -55,3 +55,41 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     value: tag,
   });
 };
+
+// /** @param {gatsby.CreatePageArgs}  */
+// exports.createPages = async ({ actions, graphql, reporter }) => {
+//   const { createPage } = actions;
+
+//   const result = await graphql(/* GraphQL */ `
+//     query CreateProjects {
+//       projects: allMdx(
+//         filter: { fileAbsolutePath: { regex: "/content/projects//" } }
+//       ) {
+//         nodes {
+//           slug
+//         }
+//       }
+//     }
+//   `);
+
+//   if (result.errors) {
+//     reporter.panicOnBuild(
+//       `There was an error loading the projects`,
+//       result.errors
+//     );
+//     return;
+//   }
+
+//   const projectSlugs = result.data.projects.nodes;
+//   const projectTemplate = require.resolve("./src/templates/project.tsx");
+
+//   projectSlugs.forEach(({ slug }) => {
+//     createPage({
+//       path: `/projects/${slug}`.replace(/\/\/+/g, `/`),
+//       component: projectTemplate,
+//       context: {
+//         slug,
+//       },
+//     });
+//   });
+// };

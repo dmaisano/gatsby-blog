@@ -7,5 +7,5 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./src/declarations.d.ts"]
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }

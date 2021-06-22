@@ -18,9 +18,10 @@ const customTheme: Theme = {
   },
   styles: {
     a: {
-      textDecoration: `none`,
+      color: "primary",
+      textDecoration: "none",
       ":hover": {
-        textDecoration: `none`,
+        textDecoration: "none",
       },
     },
   },

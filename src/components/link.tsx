@@ -12,6 +12,7 @@ interface LinkProps
     GatsbyLinkSourceProps<{}> {
   sx?: ThemeUIStyleObject;
 }
+
 const Link: React.FC<LinkProps> = ({ children, to, sx, ...props }) => {
   return (
     <GatsbyLink

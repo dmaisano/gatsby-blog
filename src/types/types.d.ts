@@ -1,4 +1,16 @@
 import { Node } from "gatsby";
+import { IGatsbyImageData } from "gatsby-plugin-image";
+
+type ProjectQueryResult = {
+  slug: string;
+  frontmatter: {
+    title: string;
+    description?: string;
+    banner: IGatsbyImageData;
+    href: string;
+    repo?: string;
+  };
+};
 
 type TagType = {
   name: `React`;

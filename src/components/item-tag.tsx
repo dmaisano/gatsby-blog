@@ -29,6 +29,7 @@ const ItemTag: React.FC<ItemTagProps> = ({ tag }) => {
       sx={{
         backgroundColor: [TagColors[tag.slug].bg],
         color: [TagColors[tag.slug].text],
+        fontWeight: `medium`,
         padding: [`0.75rem 0.5rem`],
         marginTop: [0, 0, `0.25rem`],
         float: [`left`],

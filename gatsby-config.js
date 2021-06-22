@@ -1,6 +1,46 @@
+const siteTitle = `dmaisano`;
+const siteDescription = `personal site & blog`;
+
+siteDescription;
 module.exports = {
   siteMetadata: {
-    title: `dmaisano`,
+    siteTitle,
+    siteTitleAlt: siteTitle,
+    siteHeadline: `${siteTitle} | ${siteDescription}`,
+    siteUrl: `https://dmaisano.dev`,
+    siteDescription: `personal site & blog`,
+    siteLanguage: `en`,
+    siteImage: `/banner.jpg`,
+    // twitter handle, skipping since I don't use twitter
+    author: ``,
+    basePath: `/`,
+    blogPath: `/posts`,
+    navigation: [
+      {
+        title: `Posts`,
+        slug: `/posts`,
+      },
+      {
+        title: `About`,
+        slug: `/about`,
+      },
+      {
+        title: `Projects`,
+        slug: `/projects`,
+      },
+    ],
+    externalLinks: [
+      {
+        name: `Github`,
+        url: `https://github.com/dmaisano`,
+      },
+      // TODO: add email link
+    ],
+  },
+  // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#improved-fast-refresh-integration
+  flags: {
+    FAST_DEV: true,
+    LAZY_IMAGES: true,
   },
   plugins: [
     `gatsby-plugin-theme-ui`,

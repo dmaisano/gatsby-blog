@@ -1,0 +1,40 @@
+/** @jsx jsx */
+import React from "react";
+import { jsx, ThemeUIStyleObject } from "theme-ui";
+
+const skipNavStyles: ThemeUIStyleObject = {
+  border: 0,
+  clip: `react(0 0 0 0)`,
+  height: `1px`,
+  width: `1px`,
+  margin: `-1px`,
+  padding: 0,
+  overflow: `hidden`,
+  position: `absolute`,
+  "&:focus": {
+    padding: 3,
+    position: `fixed`,
+    top: `15px`,
+    left: `15px`,
+    backgroundColor: `heading`,
+    color: `background`,
+    zIndex: 1,
+    width: `auto`,
+    height: `auto`,
+    clip: `auto`,
+    textDecoration: `none`,
+  },
+};
+
+const SkipNavLink: React.FC<any> = ({ children, ...props }) => (
+  <a
+    {...props}
+    sx={{ ...skipNavStyles }}
+    href="#skip-nav"
+    data-skip-link="true"
+  >
+    {children}
+  </a>
+);
+
+export default SkipNavLink;

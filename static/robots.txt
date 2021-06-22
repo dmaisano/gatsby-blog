@@ -1,0 +1,3 @@
+User-agent: *
+
+sitemap: https://dmaisano.dev/sitemap.xml

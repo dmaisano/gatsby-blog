@@ -1,108 +1,54 @@
 <p align="center">
-  <a href="https://dmaisano.netlify.app/">
-    <img alt="dmaisano" src="./static/banner.jpg" />
+  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
+    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
   </a>
 </p>
+<h1 align="center">
+  Gatsby minimal starter
+</h1>
 
-# Personal Site + Blog
+## 🚀 Quick start
 
-Built using [@lekoarts/gatsby-theme-minimal-blog](https://github.com/LekoArts/gatsby-themes/tree/master/themes/gatsby-theme-minimal-blog)
+1.  **Create a Gatsby site.**
 
-[Original Theme README](https://github.com/LekoArts/gatsby-themes/tree/master/themes/gatsby-theme-minimal-blog)
+    Use the Gatsby CLI to create a new site, specifying the minimal starter.
 
-## Features
+    ```shell
+    # create a new Gatsby site using the minimal starter
+    npm init gatsby
+    ```
 
-- MDX
-- Theme UI-based theming
-- Light Mode / Dark Mode
-- Typography driven, minimal style
-- Tags/Categories support
-- Code highlighting with [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) and [react-live](https://github.com/FormidableLabs/react-live) support. Also allows adding line numbers, line highlighting, language tabs, and file titles.
-- RSS Feed for blog posts
+2.  **Start developing.**
 
-[**View the starter's code**](https://github.com/LekoArts/gatsby-starter-minimal-blog)
+    Navigate into your new site’s directory and start it up.
 
-## Usage
+    ```shell
+    cd my-gatsby-site/
+    npm run develop
+    ```
 
-### Theme options
+3.  **Open the code and start customizing!**
 
-| Key               | Default Value                                        | Description                                                                                                |
-| ----------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `basePath`        | `/`                                                  | Root url for the theme                                                                                     |
-| `blogPath`        | `/blog`                                              | url for the blog post overview page                                                                        |
-| `tagsPath`        | `/tags`                                              | url for the tags overview page and prefix for tags (e.g. `/tags/my-tag`)                                   |
-| `postsPath`       | `content/posts`                                      | Location of posts                                                                                          |
-| `postsPrefix`     | `/`                                                  | Prefix for all individual blog posts                                                                       |
-| `pagesPath`       | `content/pages`                                      | Location of additional pages (optional)                                                                    |
-| `mdx`             | `true`                                               | Configure `gatsby-plugin-mdx` (if your website already is using the plugin pass `false` to turn this off)  |
-| `formatString`    | `DD.MM.YYYY`                                         | Configure the date format for Date fields                                                                  |
-| `showLineNumbers` | `true`                                               | Show line numbers in code blocks                                                                           |
-| `showCopyButton`  | `true`                                               | Show copy button in code blocks                                                                            |
-| `navigation`      | `[]`                                                 | Add links to your internal sites to the left part of the header                                            |
-| `externalLinks`   | `[]`                                                 | Add links to your external sites to the right part of the header                                           |
-| `feed`            | `true`                                               | Configure `gatsby-plugin-feed` (if your website already is using the plugin pass `false` to turn this off) |
-| `feedTitle`       | `Minimal Blog - @lekoarts/gatsby-theme-minimal-blog` | Pass a string to the `title` option of `gatsby-plugin-feed`                                                |
+    Your site is now running at http://localhost:8000!
 
-#### Example usage
+    Edit `src/pages/index.js` to see your site update in real-time!
 
-```js
-// gatsby-config.js
-module.exports = {
-  plugins: [
-    {
-      resolve: `@lekoarts/gatsby-theme-minimal-blog`,
-      options: {
-        showLineNumbers: false,
-        navigation: [
-          {
-            title: `Blog`,
-            slug: `/blog`,
-          },
-          {
-            title: `About`,
-            slug: `/about`,
-          },
-        ],
-        externalLinks: [
-          {
-            name: `Twitter`,
-            url: `https://twitter.com/lekoarts_de`,
-          },
-          {
-            name: `Instagram`,
-            url: `https://www.instagram.com/lekoarts.de/`,
-          },
-        ],
-      },
-    },
-  ],
-}
-```
+4.  **Learn more**
 
-#### Additional configuration
+    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
 
-In addition to the theme options, there are a handful of items you can customize via the `siteMetadata` object in your site's `gatsby-config.js`
+    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
 
-```js
-// gatsby-config.js
-module.exports = {
-  siteMetadata: {
-    // Used for the title template on pages other than the index site
-    siteTitle: `Lupin`,
-    // Default title of the page
-    siteTitleAlt: `Minimal Blog - @lekoarts/gatsby-theme-minimal-blog`,
-    // Can be used for e.g. JSONLD
-    siteHeadline: `Minimal Blog - Gatsby Theme from @lekoarts`,
-    // Will be used to generate absolute URLs for og:image etc.
-    siteUrl: `https://minimal-blog.lekoarts.de`,
-    // Used for SEO
-    siteDescription: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and line highlighting.`,
-    // Will be set on the <html /> tag
-    siteLanguage: `en`,
-    // Used for og:image and must be placed inside the `static` folder
-    siteImage: `/banner.jpg`,
-    // Twitter Handle
-    author: `@lekoarts_de`,
-  },
-}
-```
+    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+## 🚀 Quick start (Gatsby Cloud)
+
+Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
+
+[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal)

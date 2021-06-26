@@ -20,7 +20,7 @@ export const GatsbyLink: React.FC<GatsbyLinkProps> = ({
     <GLink
       to={to}
       sx={{
-        ...theme.styles.a,
+        ...theme.styles?.a,
         ...sx,
       }} /** => Add default styles before the sx  **/
       {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}

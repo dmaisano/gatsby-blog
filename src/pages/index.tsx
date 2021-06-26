@@ -1,27 +1,31 @@
 /** @jsx jsx */
 import { graphql, PageProps } from "gatsby";
-import { Heading, jsx, Text } from "theme-ui";
+import { Heading, jsx } from "theme-ui";
 import Layout from "../components/layout";
 import { GatsbyLink } from "../components/links";
+import Listing from "../components/listing";
 import Title from "../components/title";
-import { visuallyHidden } from "../styles";
-import { MdxPost } from "../types";
+import { typographyStyles, visuallyHidden } from "../styles";
+import { MdxPostType } from "../types";
 import { replaceSlashes, useSiteMetadata } from "../utils";
 
 const Hero: React.FC = () => (
-  <Text
+  <Heading
+    as="h2"
     sx={{
-      fontSize: [4, 5, 6],
       fontWeight: `bold`,
-      color: `heading`,
+
+      ...typographyStyles.h1,
     }}
   >
     Domenico Maisano 🌊
-  </Text>
+  </Heading>
 );
 
 interface QueryResult {
-  posts: MdxPost[];
+  posts: {
+    nodes: MdxPostType[];
+  };
 }
 
 const IndexPage = ({ data }: PageProps<QueryResult>) => {
@@ -48,7 +52,7 @@ const IndexPage = ({ data }: PageProps<QueryResult>) => {
           Read all posts
         </GatsbyLink>
       </Title>
-      {/* <Listing posts={data.posts} showTags={true} /> */}
+      <Listing data={data.posts.nodes} showTag={true} />
     </Layout>
   );
 };

@@ -13,6 +13,7 @@ interface ISiteMetadata {
       author: string;
       basePath: string;
       blogPath: string;
+      tagsPath: string;
       navigation: {
         title: string;
         slug: string;
@@ -41,6 +42,7 @@ export const useSiteMetadata = () => {
           author
           basePath
           blogPath
+          tagsPath
           navigation {
             title
             slug

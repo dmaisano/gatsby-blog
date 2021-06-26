@@ -1,6 +1,10 @@
 import { tailwind } from "@theme-ui/presets";
 import { merge, Theme } from "theme-ui";
+import { typographyStyles } from "../styles";
 
+/**
+ * breakpoints = [`640px`, `768px`, `1024px`, `1280px`];
+ */
 const theme = merge(tailwind as Theme, {
   initialColorModeName: `light`,
   config: {
@@ -11,6 +15,8 @@ const theme = merge(tailwind as Theme, {
     primary: `#3865EF`,
     heading: `#424242`,
     text: `#2E3440`,
+    border: `#303030`,
+    // @ts-ignore
     divide: tailwind.colors.gray[4],
     modes: {},
   },
@@ -51,6 +57,7 @@ const theme = merge(tailwind as Theme, {
         "--x-height-multiplier": 0.35,
       },
     },
+    ...typographyStyles,
     h1: {
       variant: `text.heading`,
       fontSize: [5, 6, 6, 7],

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React, { ElementType } from "react";
-import { Box, jsx } from "theme-ui";
+import { Box, Heading, jsx } from "theme-ui";
+import { typographyStyles } from "../styles";
 
 type TitleProps = {
   as?: ElementType<any>;
@@ -14,7 +15,7 @@ const Title: React.FC<TitleProps> = ({
   as = `h2`,
   className = ``,
 }) => (
-  <div
+  <Box
     sx={{
       justifyContent: `space-between`,
       alignItems: `center`,
@@ -28,7 +29,7 @@ const Title: React.FC<TitleProps> = ({
       display: `flex`,
     }}
   >
-    <Box
+    <Heading
       as={as}
       sx={{
         fontWeight: `medium`,
@@ -36,11 +37,12 @@ const Title: React.FC<TitleProps> = ({
         fontFamily: `heading`,
         lineHeight: `heading`,
         color: `heading`,
+        ...typographyStyles.h3,
       }}
       className={className}
     >
       {text}
-    </Box>
+    </Heading>
     <div
       sx={{
         color: `secondary`,
@@ -51,7 +53,7 @@ const Title: React.FC<TitleProps> = ({
     >
       {children}
     </div>
-  </div>
+  </Box>
 );
 
 export default Title;

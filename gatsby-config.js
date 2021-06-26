@@ -15,6 +15,7 @@ module.exports = {
     author: ``,
     basePath: `/`,
     blogPath: `/posts`,
+    tagsPath: `/tags`,
     navigation: [
       {
         title: `Posts`,
@@ -43,7 +44,10 @@ module.exports = {
     LAZY_IMAGES: true,
   },
   plugins: [
-    `gatsby-plugin-theme-ui`,
+    {
+      resolve: `gatsby-plugin-theme-ui`,
+      options: {},
+    },
     `gatsby-plugin-image`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,

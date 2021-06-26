@@ -15,32 +15,34 @@ const Layout: React.FC<LayoutProps> = ({ children, className = `` }) => (
   <>
     <Global
       // @ts-ignore
-      styles={(theme: ThemeType) => ({
-        "*": {
-          boxSizing: `inherit`,
-        },
-        html: {
-          WebkitTextSizeAdjust: `100%`,
-        },
-        img: {
-          borderStyle: `none`,
-        },
-        pre: {
-          fontFamily: `monospace`,
-          fontSize: `1em`,
-        },
-        "[hidden]": {
-          display: `none`,
-        },
-        "::selection": {
-          backgroundColor: theme.colors.text,
-          color: theme.colors.background,
-        },
-        a: {
-          transition: `all 0.3s ease-in-out`,
-          color: `text`,
-        },
-      })}
+      styles={(theme: ThemeType) => {
+        return {
+          "*": {
+            boxSizing: `inherit`,
+          },
+          html: {
+            WebkitTextSizeAdjust: `100%`,
+          },
+          img: {
+            borderStyle: `none`,
+          },
+          pre: {
+            fontFamily: `monospace`,
+            fontSize: `1em`,
+          },
+          "[hidden]": {
+            display: `none`,
+          },
+          "::selection": {
+            backgroundColor: theme.colors?.text,
+            color: theme.colors?.background,
+          },
+          a: {
+            transition: `all 0.3s ease-in-out`,
+            color: `text`,
+          },
+        };
+      }}
     />
     <Seo />
     <SkipNavLink>Skip to content</SkipNavLink>

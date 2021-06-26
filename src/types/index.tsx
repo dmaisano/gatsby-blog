@@ -1,21 +1,27 @@
 import { Node } from "gatsby";
 
-type TagType = {
+export type ItemTageType = {
   name: `React`;
   slug: string;
 };
 
-export interface MdxPost extends Node {
+export interface MdxPostType extends Node {
   slug: string;
   title: string;
   date: string;
   excerpt: string;
   description: string;
   timeToRead?: number;
-  tags?: TagType[];
+  tags?: ItemTageType[];
   fields: {
-    tag?: TagType;
+    tag?: ItemTageType;
     [key: string]: unknown;
   };
   [key: string]: unknown;
+}
+
+export interface ProjectType {
+  title: string;
+  href: string;
+  repo?: string;
 }

@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { lighten } from "@theme-ui/color";
-import { Flex, Heading, jsx, ThemeUIStyleObject } from "theme-ui";
-import { listItemStyles, typographyStyles } from "../styles";
+import { Box, Flex, Heading, jsx, ThemeUIStyleObject } from "theme-ui";
 import { ItemTageType, MdxPostType } from "../types";
 import { useSiteMetadata } from "../utils";
 import ItemTag, { ItemTagProps } from "./item-tag";
@@ -11,22 +10,26 @@ export const itemTagStyles: {
   [key: string]: ThemeUIStyleObject;
 } = {
   react: {
-    backgroundColor: `#282C34`,
-    color: `#61dafb`,
+    backgroundColor: `secondary`,
+    color: `primary`,
     ":hover": {
-      backgroundColor: lighten(`#282C34`, 0.15),
-      color: lighten(`#61dafb`, 0.15),
+      backgroundColor: lighten(`secondary`, 0.15),
+      color: lighten(`primary`, 0.15),
     },
   },
 };
 
-type MdxPostProps = {
+type PostListingProps = {
   post: MdxPostType;
   showTag?: boolean;
   _sx?: ThemeUIStyleObject;
 };
 
-const MdxPost: React.FC<MdxPostProps> = ({ post, showTag = true, _sx }) => {
+const PostListing: React.FC<PostListingProps> = ({
+  post,
+  showTag = true,
+  _sx,
+}) => {
   const { basePath, tagsPath } = useSiteMetadata();
 
   const hasTag = showTag && post.tags && post.tags.length > 0;
@@ -46,11 +49,13 @@ const MdxPost: React.FC<MdxPostProps> = ({ post, showTag = true, _sx }) => {
   }
 
   return (
-    <Flex
+    <Box
+      as="li"
       sx={{
         display: [`block`, `block`, `block`, `flex`],
-        flexDirection: [`row`, `row`],
-        justifyContent: [`space-between`],
+        flexDirection: `row`,
+        alignItems: `flex-start`,
+        justifyContent: `space-between`,
         ":hover a:first-of-type": {
           textDecorationColor: lighten(`heading`, 0.1),
         },
@@ -60,30 +65,41 @@ const MdxPost: React.FC<MdxPostProps> = ({ post, showTag = true, _sx }) => {
         ":hover time": {
           color: `#666`,
         },
-        ...listItemStyles,
+
         ..._sx,
       }}
+      variant="list_item"
     >
-      <GatsbyLink to={post.slug} sx={{ ...typographyStyles.h3 }}>
-        <Heading as="h3" sx={{ pb: [`0.75rem`] }}>
+      <GatsbyLink to={post.slug}>
+        <Heading
+          as="h3"
+          sx={{
+            fontWeight: `medium`,
+            pb: [`0.75rem`, `0.75rem`, `0.75rem`, 0],
+            pr: [0, 0, 0, `0.75rem`],
+            m: 0,
+          }}
+          variant="styles.h3"
+        >
           {post.title}
         </Heading>
       </GatsbyLink>
       <Flex
         sx={{
+          minWidth: `fit-content`,
           flexDirection: [`row`, `row`, `row`, `column-reverse`],
           alignItems: [`center`, `center`, `center`, `flex-end`],
         }}
       >
         {hasTag ? <ItemTag {...itemTagProps} /> : <div />}
         <time
-          sx={{ ...typographyStyles.time, pl: [2, 2, 2, 0], pb: [0, 0, 0, 2] }}
+          sx={{ variant: `styles.time`, pl: [2, 2, 2, 0], pb: [0, 0, 0, 2] }}
         >
           {post.date}
         </time>
       </Flex>
-    </Flex>
+    </Box>
   );
 };
 
-export default MdxPost;
+export default PostListing;

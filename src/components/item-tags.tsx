@@ -11,7 +11,7 @@ type TagsProps = {
   }[];
 };
 
-const ItemTags = ({ tags }: TagsProps) => {
+const ItemTags: React.FC<TagsProps> = ({ tags }) => {
   const { basePath, tagsPath } = useSiteMetadata();
 
   return (

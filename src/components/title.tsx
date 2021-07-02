@@ -32,13 +32,19 @@ const Title: React.FC<TitleProps> = ({
     <Heading
       as={as}
       sx={{
-        fontWeight: `medium`,
-        fontSize: [3, 4],
-        fontFamily: `heading`,
-        lineHeight: `heading`,
-        color: `heading`,
-        ...typographyStyles.h3,
+        mt: 0,
+        // fontWeight: `medium`,
+        // fontSize: [3, 4],
+        // fontFamily: `heading`,
+        // lineHeight: `heading`,
+        // color: `heading`,
+        // ...typographyStyles.h3,
       }}
+      variant={
+        ["h1", "h2", "h3", "h4", "h5", "h6"].includes(as.toString())
+          ? `styles.${as}`
+          : `h2`
+      }
       className={className}
     >
       {text}

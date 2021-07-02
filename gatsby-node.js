@@ -1,8 +1,9 @@
 const gatsby = require("gatsby");
 const { kebabCase } = require("lodash");
-const { normalize: pathNormalize } = require("path");
 
 const basePath = `/`;
+const blogPath = `/posts`;
+const tagsPath = `/tags`;
 
 const mdxResolverPassthrough =
   (fieldName) => async (source, args, context, info) => {
@@ -17,17 +18,17 @@ const mdxResolverPassthrough =
     return result;
   };
 
+const slugify = (source) => {
+  const slug = source.slug ? source.slug : kebabCase(source.title);
+
+  return `/${basePath}/${slug}`.replace(/\/\/+/g, `/`);
+};
+
 /**
  * Create general interfaces that you could can use to leverage other data sources the core theme sets up MDX as a type for the general interface
 @param {gatsby.CreateSchemaCustomizationArgs} */
 exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes, createFieldExtension } = actions;
-
-  const slugify = (source) => {
-    const slug = source.slug ? source.slug : kebabCase(source.title);
-
-    return `/${basePath}/${slug}`.replace(/\/\/+/g, `/`);
-  };
 
   createFieldExtension({
     name: `slugify`,
@@ -70,6 +71,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       name: String
       slug: String
     }
+
     type MdxPost implements Node & Post {
       slug: String! @slugify
       title: String!
@@ -84,6 +86,22 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       description: String
       canonicalUrl: String
     }
+
+    interface Page implements Node {
+      id: ID!
+      slug: String
+      title: String!
+      excerpt(pruneLength: Int = 160): String!
+      body: String!
+    }
+
+    type MdxPage implements Node & Page {
+      slug: String
+      title: String!
+      excerpt(pruneLength: Int = 140): String!
+        @mdxpassthrough(fieldName: "excerpt")
+      body: String! @mdxpassthrough(fieldName: "body")
+    }
   `);
 };
 
@@ -94,6 +112,7 @@ exports.onCreateNode = ({
   getNode,
   createNodeId,
   createContentDigest,
+  reporter,
 }) => {
   const { createNode, createParentChildLink } = actions;
 
@@ -103,15 +122,11 @@ exports.onCreateNode = ({
   }
 
   const fileNode = getNode(node.parent);
+  /** @type {"posts" | "pages"} */
+  const source = fileNode.sourceInstanceName;
 
-  /** @type {string} */
-  const absolutePath = pathNormalize(fileNode.absolutePath);
-
-  // mdx post logic
-  if (
-    node.internal.type === `Mdx` &&
-    absolutePath.includes(pathNormalize(`${__dirname}/content/posts`))
-  ) {
+  // check if post, if so create "Post" type
+  if (node.internal.type === `Mdx` && source === "posts") {
     let modifiedTags;
 
     if (node.frontmatter.tags) {
@@ -150,5 +165,88 @@ exports.onCreateNode = ({
     });
 
     createParentChildLink({ parent: node, child: getNode(mdxPostId) });
+  }
+
+  // check if page, if so create "Page" type
+  else if (node.internal.type === `Mdx` && source === "pages") {
+    /** @type {string} */
+    const absolutePath = fileNode.absolutePath;
+
+    const result = absolutePath.match(
+      new RegExp(`content/pages/([a-zA-Z_-]+)/?.*\.mdx?`),
+    );
+
+    if (
+      !result ||
+      (result && (result.length < 2 || result[1] === "" || result[1] === null))
+    ) {
+      reporter.panicOnBuild(
+        `There was an error processing the page at the following path: ${absolutePath}`,
+      );
+      return;
+    }
+
+    const slug = slugify({ slug: result[1] }) || "";
+    const fieldData = {
+      title: node.frontmatter.title,
+      slug,
+    };
+
+    const mdxPageId = createNodeId(`${node.id} >>> MdxPage`);
+
+    createNode({
+      ...fieldData,
+      // Required fields
+      id: mdxPageId,
+      parent: node.id,
+      children: [],
+      internal: {
+        type: `MdxPage`,
+        contentDigest: createContentDigest(fieldData),
+        content: JSON.stringify(fieldData),
+        description: `Mdx implementation of the Page interface`,
+      },
+    });
+
+    createParentChildLink({ parent: node, child: getNode(mdxPageId) });
+  }
+};
+
+const pageTemplate = require.resolve("./src/templates/page.tsx");
+
+/** @param {gatsby.CreatePagesArgs} */
+exports.createPages = async ({ actions, graphql, reporter }) => {
+  const { createPage } = actions;
+
+  const result = await graphql(/* GraphQL */ `
+    query CreatePagesQuery {
+      pages: allPage {
+        nodes {
+          slug
+        }
+      }
+    }
+  `);
+
+  if (result.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your posts or pages`,
+      result.errors,
+    );
+    return;
+  }
+
+  const pages = result.data.pages.nodes;
+
+  if (pages.length > 0) {
+    pages.forEach((page) => {
+      createPage({
+        path: `/${basePath}/${page.slug}`.replace(/\/\/+/g, `/`),
+        component: pageTemplate,
+        context: {
+          slug: page.slug,
+        },
+      });
+    });
   }
 };

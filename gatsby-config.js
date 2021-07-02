@@ -54,29 +54,37 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-remark-images`,
     `gatsby-transformer-sharp`,
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `images`,
+    //     path: `./src/images/`,
+    //   },
+    //   __key: `images`,
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `pages`,
+    //     path: `./src/pages/`,
+    //   },
+    //   __key: `pages`,
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `./src/images/`,
+        name: `posts`,
+        path: `content/posts`,
       },
-      __key: `images`,
+      __key: `posts`,
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
-        path: `./src/pages/`,
+        path: `content/pages`,
       },
       __key: `pages`,
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `posts`,
-        path: `./content/posts/`,
-      },
-      // __key: `posts`,
     },
     {
       resolve: `gatsby-plugin-mdx`,

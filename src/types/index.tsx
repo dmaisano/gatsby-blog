@@ -17,11 +17,18 @@ export interface MdxPostType extends Node {
     tag?: ItemTageType;
     [key: string]: unknown;
   };
-  [key: string]: unknown;
+}
+
+export interface MdxPageType extends Node {
+  title: string;
+  slug: string;
+  excerpt: string;
+  body: string;
 }
 
 export interface ProjectType {
   title: string;
-  href: string;
+  description: string;
+  href?: string;
   repo?: string;
 }

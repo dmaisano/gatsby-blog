@@ -1,7 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import { MdxPostType, ProjectType } from "../types";
-import MdxPost from "./mdx-post";
+import MdxPost from "./post-listing";
+import ProjectListing from "./project-listing";
+import { kebabCase } from "lodash";
 
 function isPost(object: MdxPostType | ProjectType): object is MdxPostType {
   return (object as MdxPostType).date !== undefined;
@@ -19,16 +21,26 @@ const Listing: React.FC<ListingProps> = ({
   showTag = true,
 }) => {
   return (
-    <section sx={{ mb: [5, 6, 7] }} className={className}>
+    <ol
+      sx={{
+        p: 0,
+        m: 0,
+        listStyle: `none`,
+        ":not(:last-of-type)": {
+          mb: 6,
+        },
+      }}
+      className={className}
+    >
       {data.length &&
         data.map((item) =>
           isPost(item) ? (
             <MdxPost key={item.slug} post={item} showTag={showTag} />
           ) : (
-            <div>project placeholder</div>
+            <ProjectListing key={kebabCase(item.title)} project={item} />
           ),
         )}
-    </section>
+    </ol>
   );
 };
 

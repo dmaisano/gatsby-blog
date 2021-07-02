@@ -1,6 +1,6 @@
+import { lighten } from "@theme-ui/color";
 import { tailwind } from "@theme-ui/presets";
 import { merge, Theme } from "theme-ui";
-import { typographyStyles } from "../styles";
 
 /**
  * breakpoints = [`640px`, `768px`, `1024px`, `1280px`];
@@ -12,10 +12,10 @@ const theme = merge(tailwind as Theme, {
   },
   colors: {
     background: `#FEFEFE`,
-    primary: `#3865EF`,
+    primary: `#61dafb`,
+    secondary: `#282C34`,
     heading: `#424242`,
     text: `#2E3440`,
-    border: `#303030`,
     // @ts-ignore
     divide: tailwind.colors.gray[4],
     modes: {},
@@ -57,7 +57,6 @@ const theme = merge(tailwind as Theme, {
         "--x-height-multiplier": 0.35,
       },
     },
-    ...typographyStyles,
     h1: {
       variant: `text.heading`,
       fontSize: [5, 6, 6, 7],
@@ -97,6 +96,11 @@ const theme = merge(tailwind as Theme, {
       p: {
         fontStyle: `italic`,
       },
+    },
+    time: {
+      color: `heading`,
+      fontSize: [`1.125rem`, `1.125rem`, 2],
+      fontFamily: `'Inconsolata', monospace`,
     },
     table: {
       width: `100%`,
@@ -164,6 +168,32 @@ const theme = merge(tailwind as Theme, {
     },
   },
   links: {
+    item_tag: {
+      backgroundColor: `secondary`,
+      color: `primary`,
+      fontSize: [1, 1, `1.125rem`],
+      fontWeight: `medium`,
+      padding: [`0.625rem`, `0.625rem`, `0.75rem`],
+      borderRadius: `3px`,
+      ":hover": {
+        backgroundColor: lighten(`secondary`, 0.15),
+        color: lighten(`primary`, 0.15),
+      },
+      // ":not(:last-of-type)": {
+      //   marginRight: [2],
+      // },
+      source_code: {
+        backgroundColor: `secondary`,
+        color: `background`,
+        fontSize: [1, 1, `1.125rem`],
+        fontWeight: `medium`,
+        padding: [`0.625rem`, `0.625rem`, `0.75rem`],
+        borderRadius: `3px`,
+        ":hover": {
+          backgroundColor: lighten(`secondary`, 0.15),
+        },
+      },
+    },
     secondary: {
       color: `secondary`,
       textDecoration: `none`,
@@ -175,9 +205,22 @@ const theme = merge(tailwind as Theme, {
         color: `heading`,
       },
     },
-    listItem: {
-      fontSize: [1, 2, 3],
-      color: `text`,
+    tag: {
+      fontSize: [1, 1, `1.125rem`],
+      fontWeight: `medium`,
+      padding: [`0.625rem`, `0.625rem`, `0.75rem`],
+      borderRadius: `3px`,
+    },
+  },
+  list_item: {
+    py: `1.25rem`,
+    px: `0.75rem`,
+    ":hover": {
+      background: `#D4DEFC`,
+    },
+    ":not(:last-child)": {
+      borderBottom: `1px dotted`,
+      borderColor: `secondary`,
     },
   },
 });

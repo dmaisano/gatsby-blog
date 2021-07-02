@@ -1,0 +1,25 @@
+[
+  {
+    "title": "Reddit Clone",
+    "description": "App I made following along Ben Awad's tutorial on youtube.",
+    "href": "https://reddit-clone.dmaisano.dev",
+    "repo": "https://github.com/dmaisano/reddit-clone"
+  },
+  {
+    "title": "NJIT Capstone Project",
+    "description": "Capstone project I worked on for Soho Muse.",
+    "href": "https://njit-capstone.dmaisano.dev",
+    "repo": "https://github.com/dmaisano/capstone-landing-page"
+  },
+  {
+    "title": "Travel Site",
+    "description": "A demo website I made for illustration purposes.",
+    "href": "https://travel-demo.dmaisano.dev",
+    "repo": "https://github.com/dmaisano/travel-site"
+  },
+  {
+    "title": "Gatsby Blog",
+    "description": "Source code for the personal blog / portfolio site I made.",
+    "repo": "https://github.com/dmaisano/gatsby-blog"
+  }
+]

@@ -17,10 +17,7 @@ const ItemTag: React.FC<ItemTagProps> = ({ tag, basePath, tagsPath, _sx }) => {
     <GatsbyLink
       to={replaceSlashes(`/${basePath}/${tagsPath}/${tag.slug}`)}
       sx={{
-        fontSize: [1, 1, `1.125rem`],
-        fontWeight: `medium`,
-        padding: [`0.625rem`, `0.625rem`, `0.75rem`],
-        borderRadius: `3px`,
+        variant: `links.tag`,
         ..._sx,
       }}
     >

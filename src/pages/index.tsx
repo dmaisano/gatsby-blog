@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { graphql, PageProps } from "gatsby";
 import { Heading, jsx } from "theme-ui";
+import projectsJSON from "../../content/projects.json";
 import Layout from "../components/layout";
 import { GatsbyLink } from "../components/links";
 import Listing from "../components/listing";
 import Title from "../components/title";
-import { typographyStyles, visuallyHidden } from "../styles";
+import { visuallyHidden } from "../styles";
 import { MdxPostType } from "../types";
 import { replaceSlashes, useSiteMetadata } from "../utils";
 
@@ -14,9 +15,9 @@ const Hero: React.FC = () => (
     as="h2"
     sx={{
       fontWeight: `bold`,
-
-      ...typographyStyles.h1,
+      m: 0,
     }}
+    variant="styles.h2"
   >
     Domenico Maisano 🌊
   </Heading>
@@ -53,6 +54,9 @@ const IndexPage = ({ data }: PageProps<QueryResult>) => {
         </GatsbyLink>
       </Title>
       <Listing data={data.posts.nodes} showTag={true} />
+
+      <Title text="Projects" />
+      <Listing data={projectsJSON} />
     </Layout>
   );
 };

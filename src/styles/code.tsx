@@ -16,7 +16,6 @@ const code: ThemeUIStyleObject = {
     fontSize: [1, 1, 2],
     padding: `2rem 1rem 1rem 1rem`,
     webkitOverflowScrolling: `touch`,
-    backgroundColor: `transparent`,
     minWidth: `100%`,
     mb: 0,
     mt: 0,

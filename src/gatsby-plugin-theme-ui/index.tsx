@@ -1,6 +1,7 @@
 import { lighten } from "@theme-ui/color";
 import { tailwind } from "@theme-ui/presets";
 import { merge, Theme } from "theme-ui";
+import prismTheme from "@theme-ui/prism/presets/prism-tomorrow.json";
 
 /**
  * breakpoints = [`640px`, `768px`, `1024px`, `1280px`];
@@ -16,6 +17,7 @@ const theme = merge(tailwind as Theme, {
     secondary: `#282C34`,
     heading: `#424242`,
     text: `#2E3440`,
+    border: `#2C2B2B`,
     // @ts-ignore
     divide: tailwind.colors.gray[4],
     modes: {},
@@ -30,6 +32,20 @@ const theme = merge(tailwind as Theme, {
       textRendering: `optimizeLegibility`,
       WebkitFontSmoothing: `antialiased`,
       MozOsxFontSmoothing: `grayscale`,
+    },
+    pre: {},
+    code: {
+      ...prismTheme,
+      ".highlight": {
+        background: [`transparent`, `rgba(121, 184, 202, 0.3)`],
+      },
+      "& *::selection": {
+        background: [`transparent`, `rgba(235, 203, 139, 0.5)`],
+      },
+    },
+    a: {
+      transition: `all 0.3s ease-in-out`,
+      color: `text`,
     },
     p: {
       fontSize: [1, 1, 2],
@@ -141,7 +157,8 @@ const theme = merge(tailwind as Theme, {
   layout: {
     container: {
       padding: [3, 4],
-      maxWidth: [`1024px`, `1024px`, `1024px`, `1024px`, `1280px`],
+      maxWidth: [`1024px`, `1024px`, `1024px`, `1024px`],
+      // maxWidth: [`1024px`, `1024px`, `1024px`, `1024px`, `1280px`],
     },
   },
   text: {
@@ -179,9 +196,6 @@ const theme = merge(tailwind as Theme, {
         backgroundColor: lighten(`secondary`, 0.15),
         color: lighten(`primary`, 0.15),
       },
-      // ":not(:last-of-type)": {
-      //   marginRight: [2],
-      // },
       source_code: {
         backgroundColor: `secondary`,
         color: `background`,

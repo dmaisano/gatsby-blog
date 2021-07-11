@@ -37,10 +37,6 @@ const Layout: React.FC<LayoutProps> = ({ children, className = `` }) => (
             backgroundColor: theme.colors?.text,
             color: theme.colors?.background,
           },
-          a: {
-            transition: `all 0.3s ease-in-out`,
-            color: `text`,
-          },
         };
       }}
     />

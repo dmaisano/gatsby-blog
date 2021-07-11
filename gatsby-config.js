@@ -32,10 +32,13 @@ module.exports = {
     ],
     externalLinks: [
       {
+        name: `Contact 📧`,
+        url: `mailto:dmaisanooo@gmail.com?subject=I'd like to get in touch`,
+      },
+      {
         name: `Github`,
         url: `https://github.com/dmaisano`,
       },
-      // TODO: add email link
     ],
   },
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#improved-fast-refresh-integration

@@ -4,16 +4,18 @@ import React, { AnchorHTMLAttributes } from "react";
 import { jsx, Link as TLink, LinkProps, ThemeUIStyleObject } from "theme-ui";
 import theme from "../gatsby-plugin-theme-ui";
 
-interface GatsbyLinkProps
+export interface GatsbyLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>,
     GLinkProps<{}> {
   sx?: ThemeUIStyleObject;
+  hasBorder?: boolean;
 }
 
 export const GatsbyLink: React.FC<GatsbyLinkProps> = ({
   children,
   to,
   sx,
+  hasBorder,
   ...props
 }) => {
   return (
@@ -31,6 +33,17 @@ export const GatsbyLink: React.FC<GatsbyLinkProps> = ({
   );
 };
 
-export const ThemeLink: React.FC<LinkProps> = (props) => {
-  return <TLink sx={{ color: `inherit` }} {...props}></TLink>;
+export const ThemeLink: React.FC<
+  LinkProps & {
+    hasBorder: boolean;
+  }
+> = ({ hasBorder, ...props }) => {
+  return (
+    <TLink
+      sx={{
+        color: `inherit`,
+      }}
+      {...props}
+    ></TLink>
+  );
 };

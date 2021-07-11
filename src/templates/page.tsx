@@ -12,7 +12,7 @@ const PageTemplatePage = ({
   return (
     <Layout>
       <Seo title={page.title} description={page.excerpt} />
-      <Heading as="h1" variant="styles.h1">
+      <Heading as="h1" sx={{ textAlign: `center` }} variant="styles.h1">
         {page.title}
       </Heading>
       <section sx={{ my: 5, variant: `layout.content` }}>

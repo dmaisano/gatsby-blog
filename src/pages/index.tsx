@@ -1,13 +1,12 @@
 /** @jsx jsx */
 import { graphql, PageProps } from "gatsby";
 import { Heading, jsx } from "theme-ui";
-import projectsJSON from "../../content/projects.json";
 import Layout from "../components/layout";
 import { GatsbyLink } from "../components/links";
 import Listing from "../components/listing";
 import Title from "../components/title";
 import { visuallyHidden } from "../styles";
-import { MdxPostType } from "../types";
+import { MdxPostType, ProjectType } from "../types";
 import { useSiteMetadata } from "../utils";
 
 const Hero: React.FC = () => (
@@ -26,6 +25,9 @@ const Hero: React.FC = () => (
 interface QueryResult {
   posts: {
     nodes: MdxPostType[];
+  };
+  projects: {
+    nodes: ProjectType[];
   };
 }
 
@@ -54,7 +56,7 @@ const IndexPage = ({ data }: PageProps<QueryResult>) => {
       <Listing data={data.posts.nodes} showTag={true} />
 
       <Title text="Projects" />
-      <Listing data={projectsJSON} />
+      <Listing data={data.projects.nodes} limit={4} />
     </Layout>
   );
 };
@@ -75,6 +77,18 @@ export const query = graphql`
           name
           slug
         }
+      }
+    }
+    projects: allProjectsJson(
+      sort: { fields: priority, order: ASC }
+      limit: 4
+    ) {
+      nodes {
+        title
+        description
+        description
+        href
+        repo
       }
     }
   }

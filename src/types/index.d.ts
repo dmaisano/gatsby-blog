@@ -17,7 +17,7 @@ type LiveProviderProps = {
   theme?: PrismTheme;
 };
 
-export type ItemTageType = {
+export type ItemTagType = {
   name: `React`;
   slug: string;
 };
@@ -29,9 +29,9 @@ export interface MdxPostType extends Node {
   excerpt: string;
   description: string;
   timeToRead?: number;
-  tags?: ItemTageType[];
+  tags?: ItemTagType[];
   fields: {
-    tag?: ItemTageType;
+    tag?: ItemTagType;
     [key: string]: unknown;
   };
 }
@@ -48,4 +48,5 @@ export interface ProjectType {
   description: string;
   href?: string;
   repo?: string;
+  priority?: number;
 }

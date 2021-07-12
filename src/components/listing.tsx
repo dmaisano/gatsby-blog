@@ -13,13 +13,17 @@ interface ListingProps {
   data: MdxPostType[] | ProjectType[];
   className?: string;
   showTag?: boolean;
+  limit?: number;
 }
 
 const Listing: React.FC<ListingProps> = ({
   data,
   className = ``,
   showTag = true,
+  limit = -1,
 }) => {
+  data = limit > 0 ? data.slice(0, limit) : data;
+
   return (
     <ol
       sx={{

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { lighten } from "@theme-ui/color";
 import { Box, Flex, Heading, jsx, ThemeUIStyleObject } from "theme-ui";
-import { ItemTageType, MdxPostType } from "../types";
+import { ItemTagType, MdxPostType } from "../types";
 import { useSiteMetadata } from "../utils";
 import ItemTag, { ItemTagProps } from "./item-tag";
 import { GatsbyLink } from "./links";
@@ -36,7 +36,7 @@ const PostListing: React.FC<PostListingProps> = ({
 
   let itemTagProps = {} as ItemTagProps;
   if (hasTag) {
-    const tag: ItemTageType = (post as any).tags[0];
+    const tag: ItemTagType = (post as any).tags[0];
     const _sx = itemTagStyles[tag.slug];
     (_sx as any)[":hover"].textDecoration = `none`;
 

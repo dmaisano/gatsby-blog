@@ -57,22 +57,15 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-remark-images`,
     `gatsby-transformer-sharp`,
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `images`,
-    //     path: `./src/images/`,
-    //   },
-    //   __key: `images`,
-    // },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `pages`,
-    //     path: `./src/pages/`,
-    //   },
-    //   __key: `pages`,
-    // },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `content/data`,
+      },
+      __key: `data`,
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

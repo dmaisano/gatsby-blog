@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx, ThemeUIStyleObject } from "theme-ui";
-import { ItemTageType } from "../types";
+import { ItemTagType } from "../types";
 import { GatsbyLink } from "./links";
 
 export interface ItemTagProps {
-  tag: ItemTageType;
+  tag: ItemTagType;
   tagsPath: string;
   _sx: ThemeUIStyleObject;
 }

@@ -225,6 +225,10 @@ const theme = merge(tailwind as Theme, {
       padding: [`0.625rem`, `0.625rem`, `0.75rem`],
       borderRadius: `3px`,
     },
+    list_item: {
+      fontSize: [1, 2, 3],
+      color: `blue`,
+    },
   },
   list_item: {
     py: `1.25rem`,

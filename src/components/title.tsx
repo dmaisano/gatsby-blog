@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import React, { ElementType } from "react";
 import { Box, Heading, jsx } from "theme-ui";
-import { typographyStyles } from "../styles";
 
 type TitleProps = {
   as?: ElementType<any>;

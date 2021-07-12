@@ -1,9 +1,9 @@
 /** @jsx jsx */
+import { kebabCase } from "lodash";
 import { jsx } from "theme-ui";
 import { MdxPostType, ProjectType } from "../types";
 import MdxPost from "./post-listing";
 import ProjectListing from "./project-listing";
-import { kebabCase } from "lodash";
 
 function isPost(object: MdxPostType | ProjectType): object is MdxPostType {
   return (object as MdxPostType).date !== undefined;

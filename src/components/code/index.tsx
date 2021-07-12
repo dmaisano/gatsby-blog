@@ -1,6 +1,5 @@
 import loadable from "@loadable/component";
-import Highlight, { defaultProps, Language } from "prism-react-renderer";
-import theme from "prism-react-renderer/themes/nightOwl";
+import { Language } from "prism-react-renderer";
 import React from "react";
 import { LiveProviderProps } from "../../types";
 import Copy from "./copy-code";

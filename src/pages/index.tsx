@@ -8,7 +8,7 @@ import Listing from "../components/listing";
 import Title from "../components/title";
 import { visuallyHidden } from "../styles";
 import { MdxPostType } from "../types";
-import { replaceSlashes, useSiteMetadata } from "../utils";
+import { useSiteMetadata } from "../utils";
 
 const Hero: React.FC = () => (
   <Heading
@@ -30,7 +30,7 @@ interface QueryResult {
 }
 
 const IndexPage = ({ data }: PageProps<QueryResult>) => {
-  const { basePath, blogPath, siteTitle } = useSiteMetadata();
+  const { blogPath, siteTitle } = useSiteMetadata();
 
   return (
     <Layout>
@@ -49,9 +49,7 @@ const IndexPage = ({ data }: PageProps<QueryResult>) => {
       </section>
 
       <Title text="Latest Posts">
-        <GatsbyLink to={replaceSlashes(`/${basePath}/${blogPath}`)}>
-          Read all posts
-        </GatsbyLink>
+        <GatsbyLink to={blogPath}>Read all posts</GatsbyLink>
       </Title>
       <Listing data={data.posts.nodes} showTag={true} />
 
@@ -64,7 +62,7 @@ const IndexPage = ({ data }: PageProps<QueryResult>) => {
 export default IndexPage;
 
 export const query = graphql`
-  query HomepageQuery {
+  query HomePageQuery {
     posts: allPost(sort: { fields: date, order: DESC }, limit: 3) {
       nodes {
         slug

@@ -30,22 +30,21 @@ const PostListing: React.FC<PostListingProps> = ({
   showTag = true,
   _sx,
 }) => {
-  const { basePath, tagsPath } = useSiteMetadata();
+  const { tagsPath } = useSiteMetadata();
 
   const hasTag = showTag && post.tags && post.tags.length > 0;
 
-  let itemTagProps: ItemTagProps = {} as any;
+  let itemTagProps = {} as ItemTagProps;
   if (hasTag) {
     const tag: ItemTageType = (post as any).tags[0];
     const _sx = itemTagStyles[tag.slug];
     (_sx as any)[":hover"].textDecoration = `none`;
 
     itemTagProps = {
-      basePath,
       tagsPath,
       tag,
       _sx,
-    } as ItemTagProps;
+    };
   }
 
   return (

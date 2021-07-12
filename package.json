@@ -39,6 +39,7 @@
     "theme-ui": "^0.10.0"
   },
   "devDependencies": {
+    "@types/loadable__component": "^5.13.4",
     "@types/react-helmet": "^6.1.1"
   }
 }

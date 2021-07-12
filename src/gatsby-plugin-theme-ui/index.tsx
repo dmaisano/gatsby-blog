@@ -1,7 +1,7 @@
 import { lighten } from "@theme-ui/color";
 import { tailwind } from "@theme-ui/presets";
-import { merge, Theme } from "theme-ui";
 import prismTheme from "@theme-ui/prism/presets/prism-tomorrow.json";
+import { merge, Theme } from "theme-ui";
 
 /**
  * breakpoints = [`640px`, `768px`, `1024px`, `1280px`];

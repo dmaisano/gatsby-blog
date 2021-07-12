@@ -1,21 +1,16 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "theme-ui";
-import { replaceSlashes } from "../utils";
 import { GatsbyLink } from "./links";
 
 type NavigationProps = {
-  basePath: string;
   nav: {
     title: string;
     slug: string;
   }[];
 };
 
-const Navigation: React.FC<NavigationProps> = ({
-  basePath,
-  nav,
-}: NavigationProps) => {
+const Navigation: React.FC<NavigationProps> = ({ nav }: NavigationProps) => {
   return (
     <>
       {nav && nav.length > 0 && (
@@ -27,10 +22,7 @@ const Navigation: React.FC<NavigationProps> = ({
           }}
         >
           {nav.map((item) => (
-            <GatsbyLink
-              key={item.slug}
-              to={replaceSlashes(`/${basePath}/${item.slug}`)}
-            >
+            <GatsbyLink key={item.slug} to={`/${item.slug}`}>
               {item.title}
             </GatsbyLink>
           ))}
@@ -41,6 +33,3 @@ const Navigation: React.FC<NavigationProps> = ({
 };
 
 export default Navigation;
-function useMinimalBlogConfig(): { basePath: any } {
-  throw new Error("Function not implemented.");
-}

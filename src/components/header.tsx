@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "theme-ui";
-import { replaceSlashes, useSiteMetadata } from "../utils";
+import { useSiteMetadata } from "../utils";
 import HeaderExternalLinks from "./header-external-links";
 import { GatsbyLink } from "./links";
 import Navigation from "./navigation";
 
 const HeaderTitle: React.FC<{ siteTitle: string }> = ({ siteTitle }) => (
   <GatsbyLink
-    to={replaceSlashes(`/`)}
+    to="/"
     aria-label={`${siteTitle} - Back to home`}
     sx={{ color: `heading`, textDecoration: `none` }}
   >
@@ -42,7 +42,7 @@ const Header: React.FC = () => {
           flexFlow: `wrap`,
         }}
       >
-        <Navigation basePath={basePath} nav={nav} />
+        <Navigation nav={nav} />
         <HeaderExternalLinks externalLinks={externalLinks} />
       </div>
     </header>

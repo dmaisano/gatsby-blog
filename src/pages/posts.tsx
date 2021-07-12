@@ -3,6 +3,7 @@ import { graphql, PageProps } from "gatsby";
 import { jsx } from "theme-ui";
 import Layout from "../components/layout";
 import { GatsbyLink } from "../components/links";
+import Listing from "../components/listing";
 import Seo from "../components/seo";
 import Title from "../components/title";
 import { MdxPostType } from "../types";
@@ -15,15 +16,16 @@ interface QueryResult {
 }
 
 const PostsPage = ({ data }: PageProps<QueryResult>) => {
-  const { blogPath } = useSiteMetadata();
+  const { tagsPath } = useSiteMetadata();
 
   return (
     <Layout>
       <Seo title="Posts" />
 
       <Title text="Posts">
-        <GatsbyLink to={blogPath}>Read all posts</GatsbyLink>
+        <GatsbyLink to={tagsPath}>View all tags</GatsbyLink>
       </Title>
+      <Listing data={data.posts.nodes} showTag={true} />
     </Layout>
   );
 };

@@ -213,6 +213,7 @@ exports.onCreateNode = ({
 };
 
 const pageTemplate = require.resolve("./src/templates/page.tsx");
+const postTemplate = require.resolve("./src/templates/post.tsx");
 
 /** @param {gatsby.CreatePagesArgs} */
 exports.createPages = async ({ actions, graphql, reporter }) => {
@@ -221,6 +222,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const result = await graphql(/* GraphQL */ `
     query CreatePagesQuery {
       pages: allPage {
+        nodes {
+          slug
+        }
+      }
+      posts: allPost {
         nodes {
           slug
         }
@@ -237,6 +243,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   const pages = result.data.pages.nodes;
+  const posts = result.data.posts.nodes;
 
   if (pages.length > 0) {
     pages.forEach((page) => {
@@ -245,6 +252,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         component: pageTemplate,
         context: {
           slug: page.slug,
+        },
+      });
+    });
+  }
+
+  if (posts.length > 0) {
+    posts.forEach((post) => {
+      createPage({
+        path: `/${basePath}/${post.slug}`.replace(/\/\/+/g, `/`),
+        component: postTemplate,
+        context: {
+          slug: post.slug,
         },
       });
     });

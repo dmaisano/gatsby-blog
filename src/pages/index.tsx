@@ -70,8 +70,6 @@ export const query = graphql`
         slug
         title
         date(formatString: "MMM D, YYYY")
-        excerpt
-        timeToRead
         description
         tags {
           name
@@ -85,7 +83,6 @@ export const query = graphql`
     ) {
       nodes {
         title
-        description
         description
         href
         repo

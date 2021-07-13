@@ -26,10 +26,13 @@ export interface MdxPostType extends Node {
   slug: string;
   title: string;
   date: string;
-  excerpt: string;
   description: string;
-  timeToRead?: number;
   tags?: ItemTagType[];
+  banner?: any;
+  canonicalUrl?: string;
+  body?: string;
+  excerpt?: string;
+  timeToRead?: number;
   fields: {
     tag?: ItemTagType;
     [key: string]: unknown;

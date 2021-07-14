@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { kebabCase } from "lodash";
-import { jsx } from "theme-ui";
+import { jsx, ThemeUIStyleObject } from "theme-ui";
 import { MdxPostType, ProjectType } from "../types";
 import MdxPost from "./post-listing";
 import ProjectListing from "./project-listing";
@@ -14,6 +14,7 @@ interface ListingProps {
   className?: string;
   showTag?: boolean;
   limit?: number;
+  _sx?: ThemeUIStyleObject;
 }
 
 const Listing: React.FC<ListingProps> = ({
@@ -21,6 +22,7 @@ const Listing: React.FC<ListingProps> = ({
   className = ``,
   showTag = true,
   limit = -1,
+  _sx,
 }) => {
   data = limit > 0 ? data.slice(0, limit) : data;
 
@@ -33,6 +35,7 @@ const Listing: React.FC<ListingProps> = ({
         ":not(:last-of-type)": {
           mb: 6,
         },
+        ..._sx,
       }}
       className={className}
     >

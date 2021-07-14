@@ -214,6 +214,7 @@ exports.onCreateNode = ({
 
 const pageTemplate = require.resolve("./src/templates/page.tsx");
 const postTemplate = require.resolve("./src/templates/post.tsx");
+const tagTemplate = require.resolve("./src/templates/tag.tsx");
 
 /** @param {gatsby.CreatePagesArgs} */
 exports.createPages = async ({ actions, graphql, reporter }) => {
@@ -231,6 +232,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           slug
         }
       }
+      tags: allPost(sort: { fields: tags___name, order: DESC }) {
+        group(field: tags___name) {
+          fieldValue
+        }
+      }
     }
   `);
 
@@ -243,8 +249,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   const pages = result.data.pages.nodes;
-  const posts = result.data.posts.nodes;
-
   if (pages.length > 0) {
     pages.forEach((page) => {
       createPage({
@@ -257,6 +261,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   }
 
+  const posts = result.data.posts.nodes;
   if (posts.length > 0) {
     posts.forEach((post) => {
       createPage({
@@ -264,6 +269,23 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         component: postTemplate,
         context: {
           slug: post.slug,
+        },
+      });
+    });
+  }
+
+  const tags = result.data.tags.group;
+  if (tags.length > 0) {
+    tags.forEach((tag) => {
+      createPage({
+        path: `/${basePath}/${tagsPath}/${kebabCase(tag.fieldValue)}`.replace(
+          /\/\/+/g,
+          `/`,
+        ),
+        component: tagTemplate,
+        context: {
+          slug: kebabCase(tag.fieldValue),
+          name: tag.fieldValue,
         },
       });
     });

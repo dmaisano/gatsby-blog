@@ -8,8 +8,6 @@ interface ProjectListingProps {
   _sx?: ThemeUIStyleObject;
 }
 
-// TODO: fix spacing
-
 const ProjectListing: React.FC<ProjectListingProps> = ({ project, _sx }) => {
   const { title, description, href, repo } = project;
 

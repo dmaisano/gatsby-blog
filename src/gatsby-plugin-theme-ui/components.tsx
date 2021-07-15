@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import Prism from "@theme-ui/prism";
 import React from "react";
 import { jsx, Text } from "theme-ui";
+import Code from "../components/code";
 import Title from "../components/title";
+import { preToCodeBlock } from "../utils";
 
 const components = {
   Text: ({ children, ...props }) => <Text {...props}>{children}</Text>,
@@ -25,8 +26,15 @@ const components = {
       {children}
     </a>
   ),
-  pre: (props) => props.children,
-  code: Prism,
+  pre: (preProps) => {
+    const props = preToCodeBlock(preProps);
+    // if there's a codeString and some props, we passed the test
+    if (props) {
+      return <Code {...props} />;
+    }
+    // it's possible to have a pre without a code in it
+    return <pre {...preProps} />;
+  },
   wrapper: ({ children }) => <React.Fragment>{children}</React.Fragment>,
 };
 

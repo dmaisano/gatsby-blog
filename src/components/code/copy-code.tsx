@@ -4,12 +4,11 @@ import { jsx } from "theme-ui";
 import { visuallyHidden } from "../../styles";
 import { copyToClipboard } from "../../utils";
 
-const delay = (duration: number) => {
-  return new Promise((resolve) => setTimeout(resolve, duration));
-};
+const delay = (duration: number) =>
+  new Promise((resolve) => setTimeout(resolve, duration));
 
 type CopyProps = {
-  content?: string;
+  content: string;
   duration?: number;
   fileName?: string;
   trim?: boolean;
@@ -21,10 +20,6 @@ const Copy: React.FC<CopyProps> = ({
   fileName = ``,
   trim = false,
 }) => {
-  if (!content) {
-    return null;
-  }
-
   const [copied, setCopied] = useState(false);
 
   const label = copied

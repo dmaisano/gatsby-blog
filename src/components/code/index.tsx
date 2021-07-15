@@ -1,13 +1,13 @@
 import loadable from "@loadable/component";
-import { Language } from "prism-react-renderer";
+import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import React from "react";
+import { prismTheme } from "../../styles";
 import { LiveProviderProps } from "../../types";
 import Copy from "./copy-code";
 
 type CodeProps = {
   codeString: string;
   language?: Language;
-  isVisible?: boolean;
   showLineNumbers?: boolean;
   showCopyButton?: boolean;
   metastring?: string;
@@ -71,7 +71,7 @@ const LazyLiveProvider = loadable<
   );
   return (props) => (
     <LiveProvider {...props}>
-      {props.showCopyButton && <Copy content={props.code} />}
+      {props.showCopyButton && <Copy content={props.code || ""} />}
       <LiveEditor data-name="live-editor" />
       <LiveError />
       <LivePreview data-name="live-preview" />
@@ -81,15 +81,12 @@ const LazyLiveProvider = loadable<
 
 const Code: React.FC<CodeProps> = ({
   codeString,
-  isVisible = true,
   showLineNumbers = true,
   showCopyButton = true,
   className: blockClassName,
   metastring = ``,
   ...props
 }) => {
-  // console.log(props);
-
   const { language, title } = getParams(blockClassName);
   const shouldHighlightLine = calculateLinesToHighlight(metastring);
 
@@ -101,77 +98,52 @@ const Code: React.FC<CodeProps> = ({
     );
   }
   return (
-    <div>
-      <div></div>
-    </div>
+    <Highlight
+      {...defaultProps}
+      code={codeString}
+      language={language}
+      theme={prismTheme.base}
+    >
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <React.Fragment>
+          {title && (
+            <div className="code-title">
+              <div>{title}</div>
+            </div>
+          )}
+          <div className="gatsby-highlight" data-language={language}>
+            <pre
+              className={className}
+              style={style}
+              data-linenumber={showLineNumbers}
+            >
+              {showCopyButton && <Copy content={codeString} fileName={title} />}
+              <code className={`language-${language}`}>
+                {tokens.map((line, i) => {
+                  const lineProps = getLineProps({ line, key: i });
+
+                  if (shouldHighlightLine(i)) {
+                    lineProps.className = `${lineProps.className} highlight-line`;
+                  }
+
+                  return (
+                    <div {...lineProps}>
+                      {showLineNumbers && (
+                        <span className="line-number-style">{i + 1}</span>
+                      )}
+                      {line.map((token, key) => (
+                        <span {...getTokenProps({ token, key })} />
+                      ))}
+                    </div>
+                  );
+                })}
+              </code>
+            </pre>
+          </div>
+        </React.Fragment>
+      )}
+    </Highlight>
   );
-
-  // // @ts-ignore
-  // const [language, { title = `` }] = getParams(blockClassName);
-  // const shouldHighlightLine = calculateLinesToHighlight(metastring);
-
-  // const hasLineNumbers =
-  //   !noLineNumbers && language !== `noLineNumbers` && showLineNumbers;
-
-  // if (props[`react-live`]) {
-  //   return (
-  //     <div className="react-live-wrapper">
-  //       <LazyLiveProvider
-  //         code={codeString}
-  //         noInline
-  //         theme={theme}
-  //         showCopyButton={showCopyButton}
-  //       />
-  //     </div>
-  //   );
-  // }
-  // return (
-  //   <Highlight
-  //     {...defaultProps}
-  //     code={codeString}
-  //     language={language}
-  //     theme={theme}
-  //   >
-  //     {({ className, style, tokens, getLineProps, getTokenProps }) => (
-  //       <React.Fragment>
-  //         {title && (
-  //           <div className="code-title">
-  //             <div>{title}</div>
-  //           </div>
-  //         )}
-  //         <div className="gatsby-highlight" data-language={language}>
-  //           <pre
-  //             className={className}
-  //             style={style}
-  //             data-linenumber={hasLineNumbers}
-  //           >
-  //             {showCopyButton && <Copy content={codeString} fileName={title} />}
-  //             <code className={`language-${language}`}>
-  //               {tokens.map((line, i) => {
-  //                 const lineProps = getLineProps({ line, key: i });
-
-  //                 if (shouldHighlightLine(i)) {
-  //                   lineProps.className = `${lineProps.className} highlight-line`;
-  //                 }
-
-  //                 return (
-  //                   <div {...lineProps}>
-  //                     {hasLineNumbers && (
-  //                       <span className="line-number-style">{i + 1}</span>
-  //                     )}
-  //                     {line.map((token, key) => (
-  //                       <span {...getTokenProps({ token, key })} />
-  //                     ))}
-  //                   </div>
-  //                 );
-  //               })}
-  //             </code>
-  //           </pre>
-  //         </div>
-  //       </React.Fragment>
-  //     )}
-  //   </Highlight>
-  // );
 };
 
 export default Code;

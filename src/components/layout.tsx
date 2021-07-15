@@ -3,7 +3,7 @@ import { Global } from "@emotion/react";
 import React from "react";
 import { Box, Container, jsx } from "theme-ui";
 import { ThemeType } from "../gatsby-plugin-theme-ui";
-import CodeStyles from "../styles/code";
+import { codeStyles } from "../styles";
 import Footer from "./footer";
 import Header from "./header";
 import Seo from "./seo";
@@ -44,7 +44,7 @@ const Layout: React.FC<LayoutProps> = ({ children, className = `` }) => (
     <SkipNavLink>Skip to content</SkipNavLink>
     <Container>
       <Header />
-      <Box id="skip-nav" sx={{ ...CodeStyles }} className={className}>
+      <Box id="skip-nav" sx={{ ...codeStyles }} className={className}>
         {children}
       </Box>
       <Footer />

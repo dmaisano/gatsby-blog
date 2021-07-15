@@ -1,7 +1,8 @@
 import { tint } from "@theme-ui/color";
 import { ThemeUIStyleObject } from "theme-ui";
+import { prismTheme } from "./prism-theme";
 
-const code: ThemeUIStyleObject = {
+export const codeStyles: ThemeUIStyleObject = {
   "[data-name='live-editor']": {
     fontSize: 1,
     "textarea, pre": {
@@ -13,9 +14,13 @@ const code: ThemeUIStyleObject = {
     backgroundColor: tint(`primary`, 0.7),
   },
   ".prism-code": {
+    "& *::selection": {
+      background: prismTheme.themeUI[".highlight"].background,
+    },
     fontSize: [1, 1, 2],
     padding: `2rem 1rem 1rem 1rem`,
     webkitOverflowScrolling: `touch`,
+    backgroundColor: `transparent`,
     minWidth: `100%`,
     mb: 0,
     mt: 0,
@@ -176,7 +181,7 @@ const code: ThemeUIStyleObject = {
     height: 2,
   },
   ".gatsby-highlight pre::-webkit-scrollbar-thumb": {
-    backgroundColor: `primary`,
+    backgroundColor: prismTheme.themeUI[".string"].color,
   },
   ".gatsby-highlight pre::-webkit-scrollbar-track": {
     background: `rgb(1, 22, 39)`,
@@ -221,5 +226,3 @@ const code: ThemeUIStyleObject = {
     right: [0, 0, 0, -3],
   },
 };
-
-export default code;

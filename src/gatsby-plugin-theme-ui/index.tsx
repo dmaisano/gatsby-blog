@@ -1,7 +1,12 @@
-import { lighten } from "@theme-ui/color";
+import { darken, lighten, transparentize } from "@theme-ui/color";
 import { tailwind } from "@theme-ui/presets";
-import prismTheme from "@theme-ui/prism/presets/prism-tomorrow.json";
-import { merge, Theme } from "theme-ui";
+import { merge, Theme, ThemeUIStyleObject } from "theme-ui";
+import { prismTheme } from "../styles";
+
+const copyButtonBG =
+  prismTheme.themeUI[
+    ".property,.number,.function-name,.constant,.symbol,.deleted"
+  ].color;
 
 /**
  * breakpoints = [`640px`, `768px`, `1024px`, `1280px`];
@@ -34,15 +39,7 @@ const theme = merge(tailwind as Theme, {
       MozOsxFontSmoothing: `grayscale`,
     },
     pre: {},
-    code: {
-      ...prismTheme,
-      ".highlight": {
-        background: [`transparent`, `rgba(121, 184, 202, 0.3)`],
-      },
-      "& *::selection": {
-        background: [`transparent`, `rgba(235, 203, 139, 0.5)`],
-      },
-    },
+    code: {},
     a: {
       transition: `all 0.3s ease-in-out`,
       color: `text`,
@@ -154,6 +151,30 @@ const theme = merge(tailwind as Theme, {
       mx: 0,
     },
   },
+  copyButton: {
+    backgroundColor: copyButtonBG,
+    border: `none`,
+    color: prismTheme.themeUI.color,
+    cursor: `pointer`,
+    fontSize: [1, 1, 2],
+    fontFamily: `body`,
+    fontWeight: `medium`,
+    letterSpacing: `0.025rem`,
+    transition: `default`,
+    "&[disabled]": {
+      cursor: `not-allowed`,
+    },
+    ":not([disabled]):hover": {
+      backgroundColor: darken(copyButtonBG, 0.3),
+    },
+    position: `absolute`,
+    top: 0,
+    right: 0,
+    zIndex: 1,
+    borderRadius: `0 0 0 0.25rem`,
+    // padding: `0.25rem 0.6rem`,
+    padding: `0.33rem 0.75rem`,
+  } as ThemeUIStyleObject,
   layout: {
     container: {
       padding: [3, 4],

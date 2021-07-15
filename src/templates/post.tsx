@@ -7,6 +7,7 @@ import ItemTags from "../components/item-tags";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import { MdxPostType } from "../types";
+import prismTheme from "prism-react-renderer/themes/nightOwl";
 
 const px = [`32px`, `16px`, `8px`, `4px`];
 const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`);

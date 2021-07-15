@@ -18,7 +18,7 @@ type LiveProviderProps = {
 };
 
 export type ItemTagType = {
-  name: `React`;
+  name: string;
   slug: string;
 };
 

@@ -17,8 +17,9 @@ const theme = merge(tailwind as Theme, {
     useCustomProperties: true,
   },
   colors: {
+    react: `#61dafb`,
     background: `#FEFEFE`,
-    primary: `#61dafb`,
+    primary: `#3865EF`,
     secondary: `#282C34`,
     heading: `#424242`,
     text: `#2E3440`,
@@ -208,14 +209,14 @@ const theme = merge(tailwind as Theme, {
   links: {
     item_tag: {
       backgroundColor: `secondary`,
-      color: `primary`,
+      color: `react`,
       fontSize: [1, 1, `1.125rem`],
       fontWeight: `medium`,
       padding: [`0.625rem`, `0.625rem`, `0.75rem`],
       borderRadius: `3px`,
       ":hover": {
         backgroundColor: lighten(`secondary`, 0.15),
-        color: lighten(`primary`, 0.15),
+        color: lighten(`react`, 0.15),
       },
       source_code: {
         backgroundColor: `secondary`,

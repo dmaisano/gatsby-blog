@@ -26,6 +26,26 @@ const components = {
       {children}
     </a>
   ),
+  ImgComment: ({ children, ...props }) => {
+    if (!children) {
+      return null;
+    }
+
+    return (
+      <div sx={{ width: `100%`, display: `flex`, justifyContent: `center` }}>
+        <blockquote
+          sx={{
+            variant: `styles.blockquote`,
+            mt: [`-0.5rem`, `-0.5rem`, `-2rem`],
+            mb: `2rem`,
+            fontStyle: `oblique`,
+          }}
+        >
+          {children}
+        </blockquote>
+      </div>
+    );
+  },
   pre: (preProps) => {
     const props = preToCodeBlock(preProps);
     // if there's a codeString and some props, we passed the test

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { PageProps, graphql } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Heading, jsx } from "theme-ui";
 import Layout from "../components/layout";

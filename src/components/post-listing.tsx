@@ -11,10 +11,10 @@ export const itemTagStyles: {
 } = {
   react: {
     backgroundColor: `secondary`,
-    color: `primary`,
+    color: `react`,
     ":hover": {
       backgroundColor: lighten(`secondary`, 0.15),
-      color: lighten(`primary`, 0.15),
+      color: lighten(`react`, 0.15),
     },
   },
 };
